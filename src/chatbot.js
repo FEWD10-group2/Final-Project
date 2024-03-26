@@ -7,7 +7,7 @@ const Chatbot = () => {
   const [messages, setMessages] = useState([]);
 
 const chatWithGPT3 = async (userInput) => {
-    const apiEndpoint = 'https://api.openai.com/v1/engines/davinci-codex/completions';
+    const apiEndpoint = 'https://api.openai.com/v1/chat/completions';
     const headers = {
       'Content-Type': 'application/json',
       'Authorization': process.env.REACT_APP_API_KEY
