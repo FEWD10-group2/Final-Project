@@ -1,28 +1,32 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import './App.css';
+import React, { useState } from "react";
+import axios from "axios";
+import OpenAI from "openai";
+const openai = new OpenAI({
+  organization: "org-or6md2ch9pyum0sm5g6GPVAa",
+});
+import "./App.css";
 
 const Chatbot = () => {
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
 
-const chatWithGPT3 = async (userInput) => {
-    const apiEndpoint = 'https://api.openai.com/v1/chat/completions';
+  const chatWithGPT3 = async (userInput) => {
+    const apiEndpoint = "https://api.openai.com/v1/chat/completions";
     const headers = {
-      'Content-Type': 'application/json',
-      'Authorization': process.env.REACT_APP_API_KEY
+      "Content-Type": "application/json",
+      Authorization: process.env.REACT_APP_API_KEY,
     };
 
     const data = {
       prompt: userInput,
-      max_tokens: 150
+      max_tokens: 150,
     };
-try {
+    try {
       const response = await axios.post(apiEndpoint, data, { headers });
       return response.data.choices[0].text.trim();
     } catch (error) {
-      console.error('Error communicating with the API:', error.message);
-      return '';
+      console.error("Error communicating with the API:", error.message);
+      return "";
     }
   };
   const handleSubmit = async (e) => {
@@ -30,12 +34,12 @@ try {
     if (!input.trim()) return;
     const userMessage = { text: input, user: true };
     setMessages((prevMessages) => [...prevMessages, userMessage]);
-    const aiMessage = { text: '...', user: false };
+    const aiMessage = { text: "...", user: false };
     setMessages((prevMessages) => [...prevMessages, aiMessage]);
     const response = await chatWithGPT3(input);
     const newAiMessage = { text: response, user: false };
     setMessages((prevMessages) => [...prevMessages.slice(0, -1), newAiMessage]);
-    setInput('');
+    setInput("");
   };
   return (
     <div className="chatbot-container">
@@ -43,7 +47,9 @@ try {
         {messages.map((message, index) => (
           <div
             key={index}
-            className={`message ${message.user ? 'user-message' : 'ai-message'}`}
+            className={`message ${
+              message.user ? "user-message" : "ai-message"
+            }`}
           >
             {message.text}
           </div>
