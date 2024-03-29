@@ -1,22 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { Chatbot } from "react-chatbot-kit";
+import "react-chatbot-kit/build/main.css";
+import config from "./config.js";
+import MessageParser from "./MessageParser.jsx";
+import ActionProvider from "./ActionProvider.jsx";
+import "./App.css";
 
 function App() {
+  const [showBot, toggleBot] = useState(false);
+
+  const saveMessages = (messages, HTMLString) => {
+    localStorage.setItem("chat_messages", JSON.stringify(messages));
+  };
+
+  const loadMessages = () => {
+    const messages = JSON.parse(localStorage.getItem("chat_messages"));
+    return messages;
+  };
+  console.log(ActionProvider);
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Chatbot
+          config={config}
+          messageParser={MessageParser}
+          actionProvider={ActionProvider}
+          messageHistory={loadMessages()}
+          saveMessages={saveMessages}
+        />
       </header>
     </div>
   );
