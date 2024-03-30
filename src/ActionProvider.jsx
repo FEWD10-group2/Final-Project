@@ -1,41 +1,54 @@
-import React, { useState, useEffect } from 'react';
-import hoteldata from './hotelTest.json'
-import {city} from './cityname'
+import React, { useState } from 'react';
+import hotelTest from "./hotelTest.txt";
+
 
 const ActionProvider = ({ createChatBotMessage, setState, children }) => {
-  const [error, setError] = useState(null);
+
+  const hotelDataState = useState(hotelData.properties);
 
   const addMessageToState = (message) => {
-    setState(prev => ({
-      ...prev,
-      messages: [...prev.messages, message],
+    setState(prevState => ({
+      ...prevState,
+      messages: [...prevState.messages, message],
     }));
   };
 
   const handleHello = () => {
-    const botMessage = createChatBotMessage('Hello, nice to meet you');
+    const botMessage = createChatBotMessage('Hello, nice to meet you!');
     addMessageToState(botMessage);
   };
 
   const handleRecommendation = (cityName) => {
-    const confirmationMessage = createChatBotMessage(`OK, ${cityName} here are a few recommended hotels`);
+    const confirmationMessage = createChatBotMessage(`Okay, ${cityName}, here are some hotel recommendations.`);
     addMessageToState(confirmationMessage);
 
-    const filteredHotels = hoteldata.filter(hotel => hotel.city.toLowerCase() === cityName.toLowerCase());
+    const [hotelData, setHotelData] = useState({});
 
+    async function getHotelData() {
+      try {
+        const res = await fetch(hotelTest);
+        const data = await res.json();
+        setHotelData(data.properties);
+      } catch (error) {
+        console.error("Failed to fetch hotel data:", error);
+      }
+    }
+  
+    useEffect(() => {
+      getHotelData();
+    }, []);
+    
     if (filteredHotels.length > 0) {
       filteredHotels.forEach(hotel => {
-        const hotelMessage = createChatBotMessage(`Hotel: ${hotel.name}`, {
-          widget: 'hotelWidget',
-          image: hotel.images[0].thumbnail,
-          price_per_night: hotel.rate_per_night.extracted_lowest,
+        const hotelMessage = createChatBotMessage(`Hotel Name: ${hotel.name}`, {
+          image: hotel.images[0].thumbnail, 
+          price_per_night: hotel.rate_per_night?.extracted_lowest,
           amenities: hotel.amenities,
-          location:cityName
         });
         addMessageToState(hotelMessage);
       });
     } else {
-      const notFoundMessage = createChatBotMessage(`Sorry, I couldn't find any hotel recommendations in ${cityName}.`);
+      const notFoundMessage = createChatBotMessage(`Sorry, no recommended hotels found in ${cityName}.`);
       addMessageToState(notFoundMessage);
     }
   };

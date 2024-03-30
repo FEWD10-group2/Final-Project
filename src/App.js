@@ -17,7 +17,7 @@ function App() {
     const messages = JSON.parse(localStorage.getItem("chat_messages"));
     return messages;
   };
-  console.log(ActionProvider);
+
   return (
     <div className="App">
       <header className="App-header">

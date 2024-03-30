@@ -26,6 +26,7 @@
     {
       "type": "vacation rental",
       "name": "Yana Villas Kemenuh by Pramana Villas",
+      "location":"Hong Kong",
       "gps_coordinates": {
         "latitude": -8.555330276489258,
         "longitude": 115.28772735595703
