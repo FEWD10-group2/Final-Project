@@ -1,5 +1,5 @@
 import React from 'react';
-import {city} from './cityname'; // 正确导入名为 `city` 的城市数组
+import {city} from './cityname';
 
 const MessageParser = ({ children, actions }) => {
 
