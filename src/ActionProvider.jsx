@@ -10,7 +10,7 @@ function HotelCard({
 }) {
   return (
     <div className="hotel-card">
-      <img src={img} alt={name} />
+      <img src={img} alt={name} width="180px" height="150px"/>
       <h3>{name}</h3>
       <p>Rating: {rating}</p>
       <p>Price Per Night: {pricePerNight}</p>
@@ -21,7 +21,6 @@ function HotelCard({
   );
 }
 
-// 这里是您的ActionProvider组件，整合了HotelCard的使用
 const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   const [hotelData, setHotelData] = useState([]);
 
@@ -33,13 +32,6 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     }));
   };
 
-  // 我注意到您打印了getHotelData函数。不过，console.log这样使用是不正确的。
-  // 如果您想要检查getHotelData的执行，应该将其放在useEffect或函数体内。
-  // console.log('Fetching hotel data...');
-  // useEffect(() => {
-  //   getHotelData().then(() => console.log('Hotel data fetched.'));
-  // }, []);
-
   const addMessageToState = (message) => {
     setState(prevState => ({
       ...prevState,
@@ -49,8 +41,9 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   
   const handleRecommendation = async (cityName) => {
     const confirmationMessage = createChatBotMessage(`Okay, ${cityName}, here are some hotel recommendations.`);
-    addMessageToState(confirmationMessage,HotelCard);
-
+    addMessageToState(confirmationMessage);
+    const hotelInfo = createChatBotMessage(renderedHotelCards)
+    addMessageToState(hotelInfo)
   };
 
   useEffect(() => {
@@ -58,6 +51,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   }, []);
 
   async function getHotelData() {
+    
     try {
       const res = await fetch(hotelTest);
       const data = await res.json();
@@ -66,11 +60,9 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
       console.error('Failed to fetch hotel data:', error);
     }
   }
-
-  // Rendered hotel cards,这里我们将用map渲染HotelCard组件
-  const renderedHotelCards = hotelData.map((hotel, index) => (
+  
+  const renderedHotelCards = hotelData.slice(0,3).map((hotel, index) => (
     <HotelCard
-      key={index} // 假设酒店信息没有唯一ID，使用索引作为key
       name={hotel.name}
       img={hotel.images[0].thumbnail}
       rating={hotel.overall_rating}
@@ -82,7 +74,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   // Render function
   return (
     <div>
-      {renderedHotelCards}  {/* 现在我们将渲染酒店卡片 */}
+      {/* {renderedHotelCards} */}
       {React.Children.map(children, (child) =>
         React.cloneElement(child, {
           actions: {
