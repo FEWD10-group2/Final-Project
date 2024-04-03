@@ -36,9 +36,10 @@ const ContactForm = () => {
     e.target.reset();
   };
   return (
-    <div className="-mx-2">
+    <div className="-mx-2 flex flex-wrap justify-center items-center">
       <div>
-        <h1>About us</h1>
+        <p>header</p>
+        <h1 className="">About us</h1>
         <h1>About Hotels.com</h1>
         <p>
           Hotels.com gives travellers one of the widest selections of
