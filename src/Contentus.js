@@ -36,7 +36,27 @@ const ContactForm = () => {
     e.target.reset();
   };
   return (
-    <div className="flex flex-wrap -mx-2">
+    <div className="-mx-2">
+      <div>
+        <h1>About us</h1>
+        <h1>About Hotels.com</h1>
+        <p>
+          Hotels.com gives travellers one of the widest selections of
+          accommodation on the net, including both independent and major chain
+          hotels as well as self-catering in over hundreds of thousands
+          properties worldwide. The company offers a one-stop shopping source
+          for hotel pricing, amenities and availability.
+        </p>
+        <p>
+          This website is operated by Expedia, Inc., with its head office at
+          1111 Expedia Group Way W, Seattle, WA98119, USA.
+        </p>
+        <p>
+          Expedia, Inc. is a registered Seller of Travel in the State of
+          Washington USA, Licence No. 601975803.
+        </p>
+        <p>Hong Kong Travel Licence number 354712 held by Expedia, Inc. </p>
+      </div>
       <div class="w-full md:w-1/2 px-2">
         <div class="h-auto overflow-hidden w-[330px] h-[200px]">
           <iframe
@@ -46,6 +66,9 @@ const ContactForm = () => {
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
+          <p>address:123</p>
+          <p>phone:123</p>
+          <p>work time:123</p>
         </div>
       </div>
 
