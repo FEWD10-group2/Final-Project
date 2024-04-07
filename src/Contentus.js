@@ -1,4 +1,7 @@
 import { useState } from "react";
+import phone from "./phone-calling-svgrepo-com.svg";
+import time from "./time-svgrepo-com.svg";
+import address from "./address-svgrepo-com.svg";
 import "./App.css";
 import emailjs from "@emailjs/browser";
 
@@ -36,30 +39,9 @@ const ContactForm = () => {
     e.target.reset();
   };
   return (
-    <div className="-mx-2 flex flex-wrap justify-center items-center">
-      <div>
-        <p>header</p>
-        <h1 className="">About us</h1>
-        <h1>About Hotels.com</h1>
-        <p>
-          Hotels.com gives travellers one of the widest selections of
-          accommodation on the net, including both independent and major chain
-          hotels as well as self-catering in over hundreds of thousands
-          properties worldwide. The company offers a one-stop shopping source
-          for hotel pricing, amenities and availability.
-        </p>
-        <p>
-          This website is operated by Expedia, Inc., with its head office at
-          1111 Expedia Group Way W, Seattle, WA98119, USA.
-        </p>
-        <p>
-          Expedia, Inc. is a registered Seller of Travel in the State of
-          Washington USA, Licence No. 601975803.
-        </p>
-        <p>Hong Kong Travel Licence number 354712 held by Expedia, Inc. </p>
-      </div>
-      <div class="w-full md:w-1/2 px-2">
-        <div class="h-auto overflow-hidden w-[330px] h-[200px]">
+    <div className="-mx-2 flex flex-wrap pt-8 pb-8 bg-cover bg-center justify-center items-center">
+      <div className="flex w-full md:w-1/2 px-2 flex-col">
+        <div className="overflow-hidden w-[550px] h-[380px] ml-56 mb-8 mt-32">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d922.447965134475!2d114.1318653694974!3d22.36148663898441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3403f89825833649%3A0x40948ca5db317aa4!2z6JG15raM6JG15piM6LevNTHomZ_kuZ3pvo3osr_mmJPkuK3lv4Mx5bqn!5e0!3m2!1szh-TW!2shk!4v1712129789778!5m2!1szh-TW!2shk"
             class="w-full h-full border-0"
@@ -67,19 +49,29 @@ const ContactForm = () => {
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
-          <p>address:123</p>
-          <p>phone:123</p>
-          <p>work time:123</p>
+        </div>
+        <div class="flex w-full md:w-1/2 px-2 flex-col ml-60">
+          <div className="mb-4 flex items-center">
+            <img src={address} alt="Phone" className="w-6 h-6 mr-2" />
+            <span>Address:123</span>
+          </div>
+          <div className="mb-4 flex items-center">
+            <img src={phone} alt="Phone" className="w-6 h-6 mr-2" />
+            <span>Phone:123</span>
+          </div>
+          <div className="mb-4 flex items-center">
+            <img src={time} alt="Phone" className="w-6 h-6 mr-2" />
+            <span>Work Time:123</span>
+          </div>
         </div>
       </div>
-
-      <div className="w-full mt-12 m md:w-1/2 ">
+      <div className="w-full m md:w-1/2 mt-32">
         <form
           onSubmit={sendEmail}
-          className="border rounded-lg shadow-lg bg-white p-4"
+          className="border rounded-lg shadow-lg bg-white p-4 mr-60"
         >
           <h2 className="text-2xl font-bold mb-4 text-center text-gray-800">
-            Contact Us
+            Content Us
           </h2>
           <div className="mb-4">
             <label
@@ -102,6 +94,21 @@ const ContactForm = () => {
               className="block text-gray-700 text-sm font-bold mb-2"
             >
               Email
+            </label>
+            <input
+              type="email"
+              id="user_email"
+              name="user_email"
+              required
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+          <div className="mb-4">
+            <label
+              htmlFor="user_email"
+              className="block text-gray-700 text-sm font-bold mb-2"
+            >
+              Title
             </label>
             <input
               type="email"
