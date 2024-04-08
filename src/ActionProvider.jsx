@@ -30,6 +30,15 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     }));
   };
 
+  const handleError = () => {
+    const botMessage = createChatBotMessage(
+      "Sorry,I don't know you taking about"
+    );
+    setState((prev) => ({
+      ...prev,
+      messages: [...prev.messages, botMessage],
+    }));
+  };
   const addMessageToState = (message) => {
     setState((prevState) => ({
       ...prevState,
@@ -65,7 +74,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     for (let i = 0; i < 3; i++) {
       radomData[i] =
         data.properties[Math.floor(Math.random() * data.properties.length)];
-      console.log(Math.floor(Math.random() * data.properties.length));
+      /* console.log(Math.floor(Math.random() * data.properties.length)); */
     }
     return radomData;
   }
@@ -85,11 +94,11 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   // Render function
   return (
     <div>
-      {/* {renderedHotelCards} */}
       {React.Children.map(children, (child) =>
         React.cloneElement(child, {
           actions: {
             handleRecommendation,
+            handleError,
             handleHello,
           },
         })

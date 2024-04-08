@@ -36,3 +36,45 @@
     transform: rotate(360deg);
   }
 }
+
+.toggle-bot-btn {
+  border: none;
+  padding: 20px;
+  border-radius: 50%;
+  font-size: 32px;
+  cursor: pointer;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.chatbot-container {
+  position: fixed; /* 或其他定位，取决你希望它出现在什么位置 */
+  bottom: 80px;
+  right: 20px;
+  display: none; /* 默认不显示，将被fade-in class覆盖 */
+}
+
+.fade-in {
+  display: block;
+  animation: fadeInAnimation ease 0.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.fade-out {
+  display: block;
+  animation: fadeOutAnimation ease 0.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+@keyframes fadeOutAnimation {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+}
