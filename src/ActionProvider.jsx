@@ -8,7 +8,7 @@ function HotelCard({ name, img, rating, pricePerNight, amenities }) {
       <img src={img} alt={name} width="180px" height="150px" />
       <h3>{name}</h3>
       <p>Rating: {rating}</p>
-      <p>Price Per Night: {pricePerNight}</p>
+      <p>Price Per Night: {pricePerNight} USD</p>
       <ul>
         Amenities:{" "}
         {amenities.map((amenity, index) => (
