@@ -8,8 +8,8 @@ function App() {
           About us
         </p>
       </div>
-      <div className="w-[840px] border rounded-lg absolute flex justify-center flex-nowrap flex-col z-20 px-10 ml-52 mb-10">
-        <p>See The World For Less</p>
+      <div className="w-[840px] border rounded-lg absolute flex justify-center flex-nowrap flex-col z-20 px-10 ml-52 top-96 bg-white mt-24">
+        <p className="flex items-center text-2xl">See The World For Less</p>
         <span className="m-0">
           Agoda is an online travel platform that brings high-value and
           rewarding travel experiences to people all over the world through the
@@ -23,7 +23,7 @@ function App() {
           supported by a truly diverse team of more than 6,700 people in 31
           markets and Agoda customer service available 24/7.
         </span>
-        <p className="flex items-center">Visitor Numbers</p>
+        <p className="flex items-center text-2xl">Visitor Numbers</p>
         <p>
           In accordance with Agoda.com obligations under the EU’s Digital
           Services Act (DSA), we estimate that the average monthly recipients*
