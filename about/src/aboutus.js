@@ -1,6 +1,6 @@
 import "./App.css";
 
-function App() {
+function Aboutus() {
   return (
     <div>
       <div className="bg-top-bg h-[550px] w-auto bg-cover top-0 left-0 right-0 z-10 border rounded-bl-[60px] ">
@@ -51,4 +51,4 @@ function App() {
   );
 }
 
-export default App;
+export default Aboutus;
